@@ -1,17 +1,18 @@
 package com.example.checkaparment.MVP_Login;
 
 public class ModeloLogin {
-    private String password = "123Pass";
+    private String password;
     private String mensaje;
     private int contador = 0;
 
     public void validarPassword(String clave){
-        if (password != clave){
+        password = "123Pass";
+        if (clave.equals(password)){
+            mensaje = "Clave Correcta";
+            contador = 0;
+        } else {
             mensaje = "Clave Incorrecta";
             contador ++;
-        } else {
-            mensaje = "correcto";
-            contador = 0;
         }
     }
 
