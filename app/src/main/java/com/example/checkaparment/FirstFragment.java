@@ -15,7 +15,7 @@ import com.example.checkaparment.databinding.FragmentFirstBinding;
 
 public class FirstFragment extends Fragment implements IApartment{
     private FragmentFirstBinding binding;
-    private ApartmentData apartmentData;
+    private ApartmentData apartmentData = new ApartmentData();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
