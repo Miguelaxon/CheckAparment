@@ -13,4 +13,5 @@
     <string name="correo">Ingrese E-Mail</string>
     <string name="clave">Ingrese Password</string>
     <string name="botonLogin">Ingresar</string>
+    <string name="descpEdificio">Foto Edificio</string>
 </resources>

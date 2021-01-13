@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ApartmentData {
-    public static List<Apartment> apartmentList() {
+    public List<Apartment> apartmentList() {
         List<Apartment> apartmentList = new ArrayList<>();
         Apartment apartment01 = new Apartment("Edificio Almendro","Torre 1", "depto 2002", "san jose 345, La florida , Santiago", "https://unsplash.com/photos/Ub9LkIWxyec/download?force=true&w=640");
         Apartment apartment02 = new Apartment("Edificio Almendro","Torre 1", "depto 2003", "san jose 345, La florida, Santiago", "https://unsplash.com/photos/Ub9LkIWxyec/download?force=true&w=640");
