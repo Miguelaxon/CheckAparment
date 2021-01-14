@@ -65,7 +65,4 @@ public class LoginActivity extends AppCompatActivity implements ILogin {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
-    public static class ApartmentData {
-    }
 }

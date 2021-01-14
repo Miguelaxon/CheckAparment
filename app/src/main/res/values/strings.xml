@@ -14,4 +14,15 @@
     <string name="clave">Ingrese Password</string>
     <string name="botonLogin">Ingresar</string>
     <string name="descpEdificio">Foto Edificio</string>
+    <string name="fotoEdificio">Edificio</string>
+    <string name="btnGuardar">Guardar</string>
+    <string name="btnAlerta">Enviar Alerta</string>
+    <string name="estado_luces">Estado Luces</string>
+    <string name="elementos_dormitotio">Elementos Dormitotio</string>
+    <string name="elementos_cocina">Elementos Cocina</string>
+    <string name="elementos_ba_o">Elementos Baño</string>
+    <string name="estado_terminaciones_normal">Estado terminaciones Normal</string>
+    <string name="estado_terminaciones_regular">Estado terminaciones Regular</string>
+    <string name="estado_terminaciones_malas">Estado terminaciones Malas</string>
+    <string name="puntaje">Puntaje obtenido: %1$s puntos</string>
 </resources>
