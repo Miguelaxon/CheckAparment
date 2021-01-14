@@ -1,6 +1,8 @@
 package com.example.checkaparment;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -29,7 +31,8 @@ public class SecondFragment extends Fragment implements ICalculo {
     private String deptoTorre;
     private String direccion;
     private String urlImagen;
-    private int luces, dormitorio = 0, bano = 0, cocina = 0, terminaciones = 0;
+    private String  texto;
+    private int luces = 0, dormitorio = 0, bano = 0, cocina = 0, terminaciones = 0;
 
     public SecondFragment() {
     }
@@ -56,36 +59,52 @@ public class SecondFragment extends Fragment implements ICalculo {
             urlImagen = getArguments().getString("imagen");
         }
         presentator = new PresentadorCalculo(this);
+
     }
+
+
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (binding.cbEstadoLuces.isActivated()){ luces = 10; } else { luces = 0;}
-        if (binding.cbElementoDormitorio.isClickable()) { dormitorio = 20; } else { dormitorio = 0; }
-        if (binding.cbElementosCocina.isChecked()) { cocina = 30; } else { cocina = 0; }
-        if (binding.cbElementosBano.isSelected()) { bano = 40; } else { bano = 0; }
+        binding.btnAlerta.setEnabled(false);
         binding.rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 View radioButton = binding.rg.findViewById(checkedId);
                 int index = binding.rg.indexOfChild(radioButton);
-                String texto;
                 switch (index){
                     case 0:
+                        checkBoxes();
                         terminaciones = 3;
                         calculoRevision(luces, dormitorio, cocina, bano, terminaciones);
                         break;
                     case 1:
+                        checkBoxes();
                         terminaciones = 2;
                         calculoRevision(luces, dormitorio, cocina, bano, terminaciones);
                         break;
                     case 2:
+                        checkBoxes();
                         terminaciones = 1;
                         calculoRevision(luces, dormitorio, cocina, bano, terminaciones);
                         break;
                 }
-                texto = getString(R.string.puntaje, String.valueOf(resultadoCalculo()));
-                binding.tvPuntaje.setText(texto);
+                mensajePuntaje();
+            }
+        });
+
+        binding.btnGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "El puntaje obtenido es: "
+                        + String.valueOf(resultadoCalculo()), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.btnAlerta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onIntent();
             }
         });
     }
@@ -98,5 +117,35 @@ public class SecondFragment extends Fragment implements ICalculo {
     @Override
     public int resultadoCalculo() {
         return presentator.resultadoCalculo();
+    }
+
+    public void checkBoxes(){
+        if (binding.cbEstadoLuces.isChecked()){ luces = 10; } else { luces = 0; }
+        if (binding.cbElementoDormitorio.isChecked()) { dormitorio = 20; } else { dormitorio = 0; }
+        if (binding.cbElementosCocina.isChecked()) { cocina = 30; } else { cocina = 0; }
+        if (binding.cbElementosBano.isChecked()) { bano = 40; } else { bano = 0; }
+    }
+
+    public void mensajePuntaje(){
+        texto = getString(R.string.puntaje, String.valueOf(resultadoCalculo()));
+        binding.tvPuntaje.setText(texto);
+        if (resultadoCalculo() < 130) {
+            binding.tvPuntaje.setTextColor(Color.WHITE);
+            binding.tvPuntaje.setBackgroundColor(Color.RED);
+            binding.btnAlerta.setEnabled(true);
+        } else {
+            binding.tvPuntaje.setTextColor(Color.BLACK);
+            binding.tvPuntaje.setBackgroundColor(Color.WHITE);
+            binding.btnAlerta.setEnabled(false);
+        }
+    }
+
+    public void onIntent(){
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto: "));
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[] {"hideki.ahumada@gmail.com"});
+        intent.putExtra(Intent.EXTRA_SUBJECT, "ALERTA!");
+        startActivity(intent);
     }
 }

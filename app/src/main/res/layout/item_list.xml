@@ -14,9 +14,9 @@
         <ImageView
             android:id="@+id/ivEdificio"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars"
-            android:contentDescription="@string/descpEdificio" />
+            android:layout_height="150dp"
+            android:contentDescription="@string/descpEdificio"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tvNombreEdificio"
